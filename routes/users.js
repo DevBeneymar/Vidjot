@@ -7,7 +7,7 @@ const express = require('express'),
 
 // 0- Start Load Users model
 require('../models/user');
-const Userss = mongoose.model('users');
+const Userss = mongoose.model('users'); 
 // End Load model
 
 // 1- User Login route
@@ -59,7 +59,7 @@ router.post('/register',(req,res)=>{
         errors.push({text:'Password must be at least 4 characters'});
     }
     if(errors.length > 0){
-        res.render('users/register',{
+        res.render('users/signup',{
             errors:errors,
             name:req.body.name,
             email:req.body.email,
@@ -72,7 +72,7 @@ router.post('/register',(req,res)=>{
                 // if(err) throw err;
                 if(user){
                     req.flash('error_msg','Email already registered');
-                    res.redirect('/users/register');
+                    res.redirect('/users/register'); 
                 }
                 else{
                     const newUser = new Userss({

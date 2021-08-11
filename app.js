@@ -24,9 +24,9 @@ require('./config/passport')(passport);
 // DB config
 const db = require('./config/database');
 
-// Debut Connection database online : Connect to mongoose
+// Debut Connection database : Connect to mongoose
 mongoose.connect(db.mongoURI,{
-    // useMongoClient:true
+    // useMongoClient:true 
      keepAlive: 1,
      useNewUrlParser: true, //remove this code
      useUnifiedTopology: true
@@ -37,23 +37,7 @@ mongoose.connect(db.mongoURI,{
 .catch((err)=>{
     console.log(err);
 });
-// Fin connection database online
-/*
-// Debut Connection database local : Connect to mongoose
-mongoose.connect('mongodb://localhost/vidjot-dev',{
-    // useMongoClient:true
-     keepAlive: 1,
-     useNewUrlParser: true, //remove this code
-     useUnifiedTopology: true
-})
-.then(()=>{
-    console.log('MongoDB Connected...');
-})
-.catch((err)=>{
-    console.log(err);
-});
-// Fin connection database local
-*/
+// Fin connection database
 
 // middleware Express-handlebar : Pour la gestion du template
 app.engine('handlebars', exphbs({
@@ -91,8 +75,9 @@ app.use(session({
 app.use(passport.initialize());
 app.use(passport.session());
 
+// Middleware Flash
 app.use(flash());
-app.use(require('./middlewares/flash'));
+app.use(require('./middlewares/flash')); 
 /*
 // Global variables
 app.use((req,res,next)=>{

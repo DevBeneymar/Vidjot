@@ -34,7 +34,8 @@ module.exports = ((passport)=>{
 
     passport.deserializeUser((id, done)=>{
         Userss.findById(id, (err, user)=>{
-        done(err, user);
+        console.log(user);
+         done(err, user);
         });
     });
 
